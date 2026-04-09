@@ -1,0 +1,155 @@
+/* ---------------------- */
+/* Body & Centering */
+/* ---------------------- */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #0b1220, #000 80%);
+    font-family: sans-serif;
+}
+
+/* ---------------------- */
+/* Fairy Eye Container */
+/* ---------------------- */
+.fairy-eye {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #3b82f6, #1e3a8a 70%, #020617);
+    box-shadow:
+        inset 0 0 40px rgba(255,255,255,0.08),
+        inset 0 0 60px rgba(0,0,0,0.5),
+        0 0 40px rgba(59,130,246,0.4),
+        0 0 80px rgba(59,130,246,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    animation: breathe 4s ease-in-out infinite;
+}
+
+/* ---------------------- */
+/* Iris */
+/* ---------------------- */
+.iris {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #60a5fa, #1e40af 70%);
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,0.15),
+        inset 0 0 40px rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* ---------------------- */
+/* Rings inside iris */
+/* ---------------------- */
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.15);
+}
+
+.ring1 { width: 70px; height: 70px; opacity: 0.25; }
+.ring2 { width: 40px; height: 40px; opacity: 0.5; }
+
+/* Extra faint glow */
+.ring::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ---------------------- */
+/* Pupil */
+/* ---------------------- */
+.pupil {
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #000, #111);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(0,0,0,0.8);
+}
+
+.pupil::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+}
+
+/* ---------------------- */
+/* Blink Animation */
+/* ---------------------- */
+.blink .iris::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0%;
+    background: #020617;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    animation: blink 0.25s ease;
+}
+
+@keyframes blink {
+    0%   { height: 0%; }
+    50%  { height: 100%; }
+    100% { height: 0%; }
+}
+
+/* ---------------------- */
+/* Breathing animation (subtle scale) */
+/* ---------------------- */
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.02); }
+}
+
+/* ---------------------- */
+/* Eye states (optional) */
+/* ---------------------- */
+.fairy-eye.happy { box-shadow: 0 0 60px #60a5fa, 0 0 120px #93c5fd; }
+.fairy-eye.angry { background: radial-gradient(circle at 30% 30%, #ef4444, #7f1d1d 70%, #020617); }
+.fairy-eye.thinking { animation: thinkingPulse 1s infinite alternate; }
+
+@keyframes thinkingPulse {
+    from { box-shadow: 0 0 20px #3b82f6; }
+    to   { box-shadow: 0 0 60px #60a5fa; }
+}
+
+.pupil {
+    transition: transform 0.1s ease-out;
+}
+
+/* ---------------------- */
+/* Hint text */
+/* ---------------------- */
+.hint {
+    margin-top: 15px;
+    color: #94a3b8;
+    font-size: 14px;
+    text-align: center;
+}
